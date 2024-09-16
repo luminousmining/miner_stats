@@ -37,7 +37,6 @@ class MinerSoftware:
 
 
 def initialize_logger():
-    now = datetime.datetime.now()
     log_level = logging.INFO
     logging.basicConfig(
         format='%(levelname)s[%(asctime)s]: %(message)s',
