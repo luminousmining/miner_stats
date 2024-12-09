@@ -1,7 +1,11 @@
+import os
 import requests
 import random
 import logging
 import datetime
+
+
+g_access_token = None
 
 
 def random_header() -> dict:
@@ -9,31 +13,50 @@ def random_header() -> dict:
                    f'.{random.randint(100, 200)}' \
                    f'.{random.randint(100, 200)}' \
                    f'.{random.randint(100, 200)}'
-    return {'X-Forwarded-For': ip_generated, 'True-Client-IP': ip_generated, 'X-Real-IP': ip_generated}
+    return {
+        'X-Forwarded-For': ip_generated,
+        'True-Client-IP': ip_generated,
+        'X-Real-IP': ip_generated
+    }
 
 
 class MinerSoftware:
 
-    def __init__(self, name: str, url: str):
-        self.__name = name
-        self.__url = url
+    def __init__(self, name: str, repository: str):
+        self.name = name
+        self.__repository = repository
 
-    def run(self) -> bool:
-        logging.info(f'URL: {self.__url}')
-        r = requests.get(url=self.__url, headers=random_header())
+    def __call(self, url: str) -> dict:
+        logging.debug(f'API: {url}')
+        headers = random_header()
+        if g_access_token:
+            headers['Authorization'] = g_access_token
+        r = requests.get(url=url, headers=headers)
         if r.status_code != 200:
-            return False
+            logging.error(f'{self.__repository} status code [{r.status_code}].')
+            return {}
         if not r.text:
-            logging.error(f'{self.__url} have not response TEXT.')
-            return False
+            logging.error(f'{self.__repository} have not response TEXT.')
+            return {}
 
-        for release in r.json():
-            for asset in release['assets']:
-                name = asset['name']
-                download_count = asset['download_count']
-                logging.info(f'{name}: {download_count}')
+        return r.json()
 
-        return True
+    def run(self):
+        base_url = f'https://api.github.com/repos/{self.__repository}'
+
+        url = f'{base_url}/releases/latest'
+        release = self.__call(url)
+        if release == {}:
+            return '', 0
+
+        download_count = 0
+        for asset in release['assets']:
+            download_count += asset['download_count']
+        tag_name = release['tag_name']
+
+        logging.info(f'{self.name} latest tag [{tag_name}] downloaded [{download_count}]')
+
+        return tag_name.replace('v', ''), download_count
 
 
 def initialize_logger():
@@ -48,16 +71,32 @@ def initialize_logger():
 if __name__ == '__main__':
     initialize_logger()
 
+    g_access_token = os.getenv("GITHUB_TOKEN")
+
     miners = [
-        MinerSoftware('luminousminer', 'https://api.github.com/repos/luminousmining/miner/releases'),
-        MinerSoftware('riggel', 'https://api.github.com/repos/rigelminer/rigel/releases'),
-        MinerSoftware('teamredminer', 'https://api.github.com/repos/todxx/teamredminer/releases'),
-        MinerSoftware('srbminer', 'https://api.github.com/repos/doktor83/SRBMiner-Multi/releases'),
-        MinerSoftware('lolminer', 'https://api.github.com/repos/Lolliedieb/lolMiner-releases/releases'),
-        MinerSoftware('bzminer', 'https://api.github.com/repos/bzminer/bzminer/releases'),
-        MinerSoftware('gminer', 'https://api.github.com/repos/develsoftware/GMinerRelease/releases'),
-        MinerSoftware('teamblackminer', 'https://api.github.com/repos/sp-hash/TeamBlackMiner/releases'),
+        MinerSoftware('luminousminer', 'luminousmining/miner'),
+        MinerSoftware('riggel', 'rigelminer/rigel'),
+        MinerSoftware('teamredminer', 'todxx/teamredminer'),
+        MinerSoftware('srbminer', 'doktor83/SRBMiner-Multi'),
+        MinerSoftware('lolminer', 'Lolliedieb/lolMiner-releases'),
+        MinerSoftware('bzminer', 'bzminer/bzminer'),
+        MinerSoftware('gminer', 'develsoftware/GMinerRelease'),
+        MinerSoftware('teamblackminer', 'sp-hash/TeamBlackMiner'),
     ]
 
+    current_date = datetime.date.today()
+
+    output = '# Miner Stats\n'
+    output += '\n'
+    output += f'Updated: {current_date}\n'
+    output += '\n'
+    output += '| Miner | Version | Download |\n'
+    output += '|:-----:|:-------:|:--------:|\n'
+
     for miner in miners:
-        miner.run()
+        tag_name, download_count = miner.run()
+        if tag_name == '' or download_count == 0:
+            continue
+        output += f'| {miner.name} | {tag_name} | {download_count} |\n'
+
+    logging.info(output)

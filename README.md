@@ -2,13 +2,13 @@
 
 Updated : 09/16/2024
 
-|     Miner      | Version | Download | 
+|     Miner      | Version | Download |
 |:--------------:|:-------:|:--------:|
-| luminousminer  |   0.3   |   131    |
-|     rigel      | 1.19.0  |  6 234   |
-|  teamredminer  | 0.10.21 |  16 704  |
-|    SRBMiner    |  2.6.4  |  4 891   |
-|    lolminer    |  1.90   |   736    |
-|    bzminer     | 21.4.0  |  4 140   |
-|     gminer     |  3.44   | 466 172  |
-| TeamBlackMiner |  2.25   |   197    |
+| luminousminer  |  0.3    |   194    |
+|    riggel      | 1.19.3  |   4065   |
+|  teamredminer  | 0.10.21 |  29355   |
+|    srbminer    |  2.7.2  |  17301   |
+|    lolminer    |  1.92   |  82131   |
+|    bzminer     | 21.5.3  |   5163   |
+|     gminer     |  3.44   |  707314  |
+| teamblackminer |  2.27   |   934    |
