@@ -52,11 +52,11 @@ class MinerSoftware:
         download_count = 0
         for asset in release['assets']:
             download_count += asset['download_count']
-        tag_name = release['tag_name']
+        tag_name = release['tag_name'].replace('v', '')
 
-        logging.info(f'{self.name} latest tag [{tag_name}] downloaded [{download_count}]')
+        logging.info(f'{self.name} v{tag_name}: {download_count}')
 
-        return tag_name.replace('v', ''), download_count
+        return tag_name, download_count
 
 
 def initialize_logger():
