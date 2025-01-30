@@ -29,7 +29,7 @@ class MinerSoftware:
         self.download_count_last = 0
 
     def __call(self, url: str) -> dict:
-        logging.info(f'API: {url}')
+        logging.debug(f'API: {url}')
         headers = random_header()
         if g_access_token:
             headers['Authorization'] = f'Bearer {g_access_token}'
@@ -54,11 +54,12 @@ class MinerSoftware:
         for asset in release['assets']:
             download_count += asset['download_count']
         tag_name = release['tag_name'].replace('v', '')
+        created_at = release['created_at']
 
-        logging.info(f'{self.name} v{tag_name}: {download_count}')
+        logging.info(f'[latest]{self.name} v{tag_name}: {download_count}')
         self.download_count_last = download_count
 
-        return tag_name, download_count
+        return tag_name, download_count, created_at
 
     def get_old_version(self, max_count: int) -> list:
         url = f'{self.base_url}/releases?per_page={max_count + 1}'
@@ -70,16 +71,18 @@ class MinerSoftware:
         for release in releases[1:len(releases)]:
             count = 0
             tag_name = release['tag_name']
+            created_at = release['created_at']
             assets = release['assets']
             for asset in assets:
                 count += asset['download_count']
-            versions.append((tag_name, count))
+            versions.append((tag_name, count, created_at))
+            logging.info(f'[old]{self.name} v{tag_name}: {count}')
 
         return versions
 
 
 def initialize_logger():
-    log_level = logging.INFO
+    log_level = logging.DEBUG
     logging.basicConfig(
         format='%(levelname)s[%(asctime)s]: %(message)s',
         datefmt='%m/%d/%Y %I:%M:%S %p',
@@ -99,13 +102,13 @@ def build_header() -> str:
 def build_latest() -> str:
     output = '## Latest Version'
     output += '\n'
-    output += '| Miner | Version | Download |\n'
-    output += '|:-----:|:-------:|:--------:|\n'
+    output += '| Miner | Version | Download | Release Date |\n'
+    output += '|:-----:|:-------:|:--------:|:------------:|\n'
     for miner in miners:
-        tag_name, download_count = miner.get_latest()
+        tag_name, download_count, created_at = miner.get_latest()
         if tag_name == '' or download_count == 0:
             continue
-        output += f'| {miner.name} | {tag_name} | {download_count} |\n'
+        output += f'| {miner.name} | {tag_name} | {download_count} | {created_at} |\n'
     return output
 
 
@@ -114,11 +117,11 @@ def build_old_version(last_count: int) -> str:
     output += f'## Old version'
     output += '\n'
     for miner in miners:
-        output += '| Miner | Version | Download |\n'
-        output += '|:-----:|:-------:|:--------:|\n'
+        output += '| Miner | Version | Download | Release Date |\n'
+        output += '|:-----:|:-------:|:--------:|:------------:|\n'
         versions = miner.get_old_version(last_count)
         for version in versions:
-            output += f'| {miner.name} | {version[0]} | {version[1]} |\n'
+            output += f'| {miner.name} | {version[0]} | {version[1]} | {version[2]} |\n'
         output += '\n'
 
     return output
@@ -130,6 +133,7 @@ if __name__ == '__main__':
     g_access_token = os.getenv("GITHUB_TOKEN")
 
     miners = [
+        MinerSoftware('xmrig', 'xmrig/xmrig'),
         MinerSoftware('gminer', 'develsoftware/GMinerRelease'),
         MinerSoftware('lolminer', 'Lolliedieb/lolMiner-releases'),
         MinerSoftware('teamredminer', 'todxx/teamredminer'),
@@ -137,7 +141,13 @@ if __name__ == '__main__':
         MinerSoftware('srbminer', 'doktor83/SRBMiner-Multi'),
         MinerSoftware('teamblackminer', 'sp-hash/TeamBlackMiner'),
         MinerSoftware('bzminer', 'bzminer/bzminer'),
-        MinerSoftware('luminousminer', 'luminousmining/miner'),
+        MinerSoftware('miniz', 'miniZ-miner/miniZ'),
+        MinerSoftware('nanominer', 'nanopool/nanominer'),
+        MinerSoftware('nbminer', 'NebuTech/NBMiner'),
+        MinerSoftware('onezerominer', 'OneZeroMiner/onezerominer'),
+        MinerSoftware('ttminer', 'TrailingStop/TT-Miner-release'),
+        MinerSoftware('wildrigmulti', 'andru-kun/wildrig-multi'),
+        MinerSoftware('luminousminer', 'luminousmining/miner')
     ]
 
     current_date = datetime.date.today()
@@ -145,5 +155,5 @@ if __name__ == '__main__':
     readme = build_header()
     readme += build_latest()
     readme += build_old_version(10)
-
-    print(readme)
+    with open('README.md', 'w') as fd:
+        fd.write(readme)
