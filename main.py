@@ -3,13 +3,16 @@ import requests
 import random
 import logging
 import datetime
+from typing import List, Optional
 
+MAX_OLD_VERSIONS = 10
+GITHUB_API_BASE_URL = 'https://api.github.com/repos/'
 
 g_access_token = None
 
 
 def random_header() -> dict:
-    ip_generated = f'{random.randint(100, 200)}' \
+    ip_generated = f'{random.randint(100, 200)}'  \
                    f'.{random.randint(100, 200)}' \
                    f'.{random.randint(100, 200)}' \
                    f'.{random.randint(100, 200)}'
@@ -25,10 +28,12 @@ class MinerSoftware:
     def __init__(self, name: str, repository: str):
         self.__repository = repository
         self.name = name
-        self.base_url = f'https://api.github.com/repos/{self.__repository}'
+        self.base_url = f'{GITHUB_API_BASE_URL }{self.__repository}'
         self.download_count_last = 0
 
-    def __call(self, url: str) -> dict:
+    def __call(self, url: str) -> Optional[dict]:
+        global g_access_token
+
         logging.debug(f'API: {url}')
         headers = random_header()
         if g_access_token:
@@ -90,7 +95,7 @@ def initialize_logger():
         level=log_level)
 
 
-def build_header() -> str:
+def build_header(current_date: datetime.date) -> str:
     output = '# Miner Stats\n'
     output += '\n'
     output += f'Updated: {current_date}\n'
@@ -99,20 +104,25 @@ def build_header() -> str:
     return output
 
 
-def build_latest() -> str:
-    output = '## Latest Version'
-    output += '\n'
-    output += '| Miner | Version | Download | Release Date |\n'
-    output += '|:-----:|:-------:|:--------:|:------------:|\n'
+def build_latest(miners: List[MinerSoftware]) -> str:
+    miner_info = []
     for miner in miners:
         tag_name, download_count, created_at = miner.get_latest()
-        if tag_name == '' or download_count == 0:
-            continue
-        output += f'| {miner.name} | {tag_name} | {download_count} | {created_at} |\n'
+        if tag_name and created_at:
+            miner_info.append((miner.name, tag_name, download_count, created_at))
+
+    miner_info.sort(key=lambda x: x[3], reverse=True)
+
+    output = '## Latest Version\n\n'
+    output += '| Miner | Version | Download | Release Date |\n'
+    output += '|:-----:|:-------:|:--------:|:------------:|\n'
+    for name, tag_name, download_count, created_at in miner_info:
+        output += f'| {name} | {tag_name} | {download_count} | {created_at} |\n'
+
     return output
 
 
-def build_old_version(last_count: int) -> str:
+def build_old_version(miners: List[MinerSoftware], last_count: int) -> str:
     output = '\n'
     output += f'## Old version'
     output += '\n'
@@ -127,9 +137,10 @@ def build_old_version(last_count: int) -> str:
     return output
 
 
-if __name__ == '__main__':
-    initialize_logger()
+def run():
+    global g_access_token
 
+    initialize_logger()
     g_access_token = os.getenv("GITHUB_TOKEN")
 
     miners = [
@@ -152,8 +163,13 @@ if __name__ == '__main__':
 
     current_date = datetime.date.today()
 
-    readme = build_header()
-    readme += build_latest()
-    readme += build_old_version(10)
+    readme = build_header(current_date)
+    readme += build_latest(miners)
+    readme += build_old_version(miners, MAX_OLD_VERSIONS)
     with open('README.md', 'w') as fd:
         fd.write(readme)
+
+
+if __name__ == '__main__':
+    run()
+
