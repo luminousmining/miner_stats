@@ -6,6 +6,7 @@ import datetime
 from typing import List, Optional
 
 MAX_OLD_VERSIONS = 10
+GITHUB_BASE_URL = 'https://github.com/'
 GITHUB_API_BASE_URL = 'https://api.github.com/repos/'
 
 g_access_token = None
@@ -28,8 +29,14 @@ class MinerSoftware:
     def __init__(self, name: str, repository: str):
         self.__repository = repository
         self.name = name
-        self.base_url = f'{GITHUB_API_BASE_URL }{self.__repository}'
+        self.base_api = f'{GITHUB_API_BASE_URL }{self.__repository}'
+        self.base_repo = f'{GITHUB_BASE_URL}{self.__repository}'
         self.download_count_last = 0
+        self.description = ''
+        self.forks = 0
+        self.stars = 0
+
+        self.set_info()
 
     def __call(self, url: str) -> Optional[dict]:
         global g_access_token
@@ -50,7 +57,7 @@ class MinerSoftware:
         return r.json()
 
     def get_latest(self):
-        url = f'{self.base_url}/releases/latest'
+        url = f'{self.base_api}/releases/latest'
         release = self.__call(url)
         if release == {}:
             return '', 0
@@ -67,7 +74,7 @@ class MinerSoftware:
         return tag_name, download_count, created_at
 
     def get_old_version(self, max_count: int) -> list:
-        url = f'{self.base_url}/releases?per_page={max_count + 1}'
+        url = f'{self.base_api}/releases?per_page={max_count + 1}'
         releases = self.__call(url)
         if len(releases) <= 1:
             return []
@@ -85,6 +92,17 @@ class MinerSoftware:
 
         return versions
 
+    def set_info(self):
+        url = f'{self.base_api}'
+        body = self.__call(url)
+
+        self.description = body['description']
+        self.forks = body['forks_count']
+        self.stars = body['stargazers_count']
+
+        if not self.description:
+            self.description = ' '
+
 
 def initialize_logger():
     log_level = logging.DEBUG
@@ -99,6 +117,20 @@ def build_header(current_date: datetime.date) -> str:
     output = '# Miner Stats\n'
     output += '\n'
     output += f'Updated: {current_date}\n'
+    output += '\n'
+
+    return output
+
+
+def build_links(miners: List[MinerSoftware]) -> str:
+    output = '## Miners\n'
+    output += '\n'
+    output += '| Miner | link | description |stars | forks |\n'
+    output += '|:-----:|:----:|:-----------:|:----:|:-----:|\n'
+
+    for miner in miners:
+        output += f'|{miner.name}|{miner.base_repo}|{miner.description}|{miner.stars}|{miner.forks}|\n'
+
     output += '\n'
 
     return output
@@ -164,6 +196,7 @@ def run():
     current_date = datetime.date.today()
 
     readme = build_header(current_date)
+    readme += build_links(miners)
     readme += build_latest(miners)
     readme += build_old_version(miners, MAX_OLD_VERSIONS)
     with open('README.md', 'w') as fd:
