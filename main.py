@@ -26,17 +26,22 @@ def random_header() -> dict:
 
 class MinerSoftware:
 
-    def __init__(self, name: str, repository: str):
+    def __init__(self, name: str, repository: str, opensource: bool):
         self.__repository = repository
         self.name = name
+        self.opensource = opensource
         self.base_api = f'{GITHUB_API_BASE_URL }{self.__repository}'
         self.base_repo = f'{GITHUB_BASE_URL}{self.__repository}'
         self.download_count_last = 0
         self.description = ''
         self.forks = 0
         self.stars = 0
+        self.fees = {}
 
         self.set_info()
+
+    def add_fee(self, algorithm: str, percent: float) -> None:
+        self.fees[algorithm] = percent
 
     def __call(self, url: str) -> Optional[dict]:
         global g_access_token
@@ -176,21 +181,33 @@ def run():
     g_access_token = os.getenv("GITHUB_TOKEN")
 
     miners = [
-        MinerSoftware('xmrig', 'xmrig/xmrig'),
-        MinerSoftware('gminer', 'develsoftware/GMinerRelease'),
-        MinerSoftware('lolminer', 'Lolliedieb/lolMiner-releases'),
-        MinerSoftware('teamredminer', 'todxx/teamredminer'),
-        MinerSoftware('riggel', 'rigelminer/rigel'),
-        MinerSoftware('srbminer', 'doktor83/SRBMiner-Multi'),
-        MinerSoftware('teamblackminer', 'sp-hash/TeamBlackMiner'),
-        MinerSoftware('bzminer', 'bzminer/bzminer'),
-        MinerSoftware('miniz', 'miniZ-miner/miniZ'),
-        MinerSoftware('nanominer', 'nanopool/nanominer'),
-        MinerSoftware('nbminer', 'NebuTech/NBMiner'),
-        MinerSoftware('onezerominer', 'OneZeroMiner/onezerominer'),
-        MinerSoftware('ttminer', 'TrailingStop/TT-Miner-release'),
-        MinerSoftware('wildrigmulti', 'andru-kun/wildrig-multi'),
-        MinerSoftware('luminousminer', 'luminousmining/miner')
+        # Miner Open Source
+        MinerSoftware('xmrig', 'xmrig/xmrig', True),
+        MinerSoftware('luminousminer', 'luminousmining/miner', True),
+        MinerSoftware('ethminer', 'ethereum-mining/ethminer', True),
+        MinerSoftware('kawpowminer', 'RavenCommunity/kawpowminer', True),
+        MinerSoftware('evrprogpowminer', 'EvrmoreOrg/evrprogpowminer', True),
+        MinerSoftware('meowpowminer', 'Meowcoin-Foundation/meowpowminer', True),
+        MinerSoftware('quai-gpu-miner', 'dominant-strategies/quai-gpu-miner', True),
+        MinerSoftware('firominer', 'firoorg/firominer', True),
+        MinerSoftware('Autolykos2_NV_Miner', 'mhssamadani/Autolykos2_NV_Miner', True),
+        MinerSoftware('Autolykos2_AMD_Miner', 'mhssamadani/Autolykos2_AMD_Miner', True),
+
+        # Miner Close Source
+        MinerSoftware('gminer', 'develsoftware/GMinerRelease', False),
+        MinerSoftware('lolminer', 'Lolliedieb/lolMiner-releases', False),
+        MinerSoftware('teamredminer', 'todxx/teamredminer', False),
+        MinerSoftware('riggel', 'rigelminer/rigel', False),
+        MinerSoftware('srbminer', 'doktor83/SRBMiner-Multi', False),
+        MinerSoftware('teamblackminer', 'sp-hash/TeamBlackMiner', False),
+        MinerSoftware('bzminer', 'bzminer/bzminer', False),
+        MinerSoftware('miniz', 'miniZ-miner/miniZ', False),
+        MinerSoftware('nanominer', 'nanopool/nanominer', False),
+        MinerSoftware('nbminer', 'NebuTech/NBMiner', False),
+        MinerSoftware('onezerominer', 'OneZeroMiner/onezerominer', False),
+        MinerSoftware('ttminer', 'TrailingStop/TT-Miner-release', False),
+        MinerSoftware('wildrigmulti', 'andru-kun/wildrig-multi', False),
+        MinerSoftware('T-Rex', 'trexminer/T-Rex', False),
     ]
 
     current_date = datetime.date.today()
