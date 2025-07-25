@@ -127,14 +127,14 @@ def build_header(current_date: datetime.date) -> str:
     return output
 
 
-def build_links(miners: List[MinerSoftware]) -> str:
+def build_miner_list(miners: List[MinerSoftware]) -> str:
     output = '## Miners\n'
     output += '\n'
-    output += '| Miner | link | description |stars | forks |\n'
-    output += '|:-----:|:----:|:-----------:|:----:|:-----:|\n'
+    output += '| Miner | description | OpenSource |stars | forks |\n'
+    output += '|:-----:|:-----------:|:----------:|:----:|:-----:|\n'
 
     for miner in miners:
-        output += f'|{miner.name}|{miner.base_repo}|{miner.description}|{miner.stars}|{miner.forks}|\n'
+        output += f'|[{miner.name}]({miner.base_repo})|{miner.description}|{miner.opensource}|{miner.stars}|{miner.forks}|\n'
 
     output += '\n'
 
@@ -213,7 +213,7 @@ def run():
     current_date = datetime.date.today()
 
     readme = build_header(current_date)
-    readme += build_links(miners)
+    readme += build_miner_list(miners)
     readme += build_latest(miners)
     readme += build_old_version(miners, MAX_OLD_VERSIONS)
     with open('README.md', 'w') as fd:

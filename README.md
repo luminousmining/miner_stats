@@ -4,56 +4,56 @@ Updated: 2025-07-25
 
 ## Miners
 
-| Miner | link | description |stars | forks |
-|:-----:|:----:|:-----------:|:----:|:-----:|
-|xmrig|https://github.com/xmrig/xmrig|RandomX, KawPow, CryptoNight and GhostRider unified CPU/GPU miner and RandomX benchmark|9346|3674|
-|luminousminer|https://github.com/luminousmining/miner|GPU Miner / Mining Software - 0% fees|18|7|
-|ethminer|https://github.com/ethereum-mining/ethminer|Ethereum miner with OpenCL, CUDA and stratum support|5975|2282|
-|kawpowminer|https://github.com/RavenCommunity/kawpowminer|KawPow 0.9.4 implementation for Ravencoin|239|101|
-|evrprogpowminer|https://github.com/EvrmoreOrg/evrprogpowminer|Miner for Evrmore mainnet which supports nVidia GPU cards for solo or pool|12|18|
-|meowpowminer|https://github.com/Meowcoin-Foundation/meowpowminer|Miner for Meowcoin which supports nvidia GPU cards for solo or pool|7|5|
-|quai-gpu-miner|https://github.com/dominant-strategies/quai-gpu-miner|GPU Mining Implementation of Quai's ProgPow Algorithm.|24|14|
-|firominer|https://github.com/firoorg/firominer| |13|10|
-|Autolykos2_NV_Miner|https://github.com/mhssamadani/Autolykos2_NV_Miner|Cuda Miner for Autolykos v2 (Ergo) for Nvidia GPUs|30|29|
-|Autolykos2_AMD_Miner|https://github.com/mhssamadani/Autolykos2_AMD_Miner|OpenCL Miner for Autolykos v2 (Ergo) for AMD GPUs|18|18|
-|gminer|https://github.com/develsoftware/GMinerRelease|Ethash, ProgPoW, Equihash, CuckooCycle GPU Miner|1988|333|
-|lolminer|https://github.com/Lolliedieb/lolMiner-releases| |2823|612|
-|teamredminer|https://github.com/todxx/teamredminer|AMD GPU Optimized Cryptocurrency Miner|982|205|
-|riggel|https://github.com/rigelminer/rigel|Optimised Nvidia GPU miner|245|23|
-|srbminer|https://github.com/doktor83/SRBMiner-Multi|CPU & GPU cryptocurrency miner|568|157|
-|teamblackminer|https://github.com/sp-hash/TeamBlackMiner|Fast and stable mining software for Ethereum POW, Ethereum Classic, Zilliqa, Ravencoin (KAWPOW), Firo (FIROPOW), MEOWPOW, EVRPROGPOW , Vertcoin and Hypra.|96|27|
-|bzminer|https://github.com/bzminer/bzminer|Fast Windows/Linux crypto miner with remote management|280|35|
-|miniz|https://github.com/miniZ-miner/miniZ| |37|2|
-|nanominer|https://github.com/nanopool/nanominer|Nanominer is a versatile tool for mining cryptocurrencies on GPUs and CPUs.|661|350|
-|nbminer|https://github.com/NebuTech/NBMiner|GPU Miner for ETH, RVN, BEAM, CFX, ZIL, AE, ERGO|3205|526|
-|onezerominer|https://github.com/OneZeroMiner/onezerominer|Optimized GPU miner|127|6|
-|ttminer|https://github.com/TrailingStop/TT-Miner-release| |48|5|
-|wildrigmulti|https://github.com/andru-kun/wildrig-multi|multi algo miner for AMD, NVIDIA and Intel gpu's|270|54|
-|T-Rex|https://github.com/trexminer/T-Rex|T-Rex NVIDIA GPU miner with web control monitoring page|2662|439|
+| Miner | description | OpenSource |stars | forks |
+|:-----:|:-----------:|:----------:|:----:|:-----:|
+|[xmrig](https://github.com/xmrig/xmrig)|RandomX, KawPow, CryptoNight and GhostRider unified CPU/GPU miner and RandomX benchmark|True|9346|3674|
+|[luminousminer](https://github.com/luminousmining/miner)|GPU Miner / Mining Software - 0% fees|True|18|7|
+|[ethminer](https://github.com/ethereum-mining/ethminer)|Ethereum miner with OpenCL, CUDA and stratum support|True|5975|2282|
+|[kawpowminer](https://github.com/RavenCommunity/kawpowminer)|KawPow 0.9.4 implementation for Ravencoin|True|239|101|
+|[evrprogpowminer](https://github.com/EvrmoreOrg/evrprogpowminer)|Miner for Evrmore mainnet which supports nVidia GPU cards for solo or pool|True|12|18|
+|[meowpowminer](https://github.com/Meowcoin-Foundation/meowpowminer)|Miner for Meowcoin which supports nvidia GPU cards for solo or pool|True|7|5|
+|[quai-gpu-miner](https://github.com/dominant-strategies/quai-gpu-miner)|GPU Mining Implementation of Quai's ProgPow Algorithm.|True|24|14|
+|[firominer](https://github.com/firoorg/firominer)| |True|13|10|
+|[Autolykos2_NV_Miner](https://github.com/mhssamadani/Autolykos2_NV_Miner)|Cuda Miner for Autolykos v2 (Ergo) for Nvidia GPUs|True|30|29|
+|[Autolykos2_AMD_Miner](https://github.com/mhssamadani/Autolykos2_AMD_Miner)|OpenCL Miner for Autolykos v2 (Ergo) for AMD GPUs|True|18|18|
+|[gminer](https://github.com/develsoftware/GMinerRelease)|Ethash, ProgPoW, Equihash, CuckooCycle GPU Miner|False|1988|333|
+|[lolminer](https://github.com/Lolliedieb/lolMiner-releases)| |False|2823|612|
+|[teamredminer](https://github.com/todxx/teamredminer)|AMD GPU Optimized Cryptocurrency Miner|False|982|205|
+|[riggel](https://github.com/rigelminer/rigel)|Optimised Nvidia GPU miner|False|245|23|
+|[srbminer](https://github.com/doktor83/SRBMiner-Multi)|CPU & GPU cryptocurrency miner|False|568|157|
+|[teamblackminer](https://github.com/sp-hash/TeamBlackMiner)|Fast and stable mining software for Ethereum POW, Ethereum Classic, Zilliqa, Ravencoin (KAWPOW), Firo (FIROPOW), MEOWPOW, EVRPROGPOW , Vertcoin and Hypra.|False|96|27|
+|[bzminer](https://github.com/bzminer/bzminer)|Fast Windows/Linux crypto miner with remote management|False|280|35|
+|[miniz](https://github.com/miniZ-miner/miniZ)| |False|37|2|
+|[nanominer](https://github.com/nanopool/nanominer)|Nanominer is a versatile tool for mining cryptocurrencies on GPUs and CPUs.|False|661|350|
+|[nbminer](https://github.com/NebuTech/NBMiner)|GPU Miner for ETH, RVN, BEAM, CFX, ZIL, AE, ERGO|False|3205|525|
+|[onezerominer](https://github.com/OneZeroMiner/onezerominer)|Optimized GPU miner|False|127|6|
+|[ttminer](https://github.com/TrailingStop/TT-Miner-release)| |False|48|5|
+|[wildrigmulti](https://github.com/andru-kun/wildrig-multi)|multi algo miner for AMD, NVIDIA and Intel gpu's|False|270|54|
+|[T-Rex](https://github.com/trexminer/T-Rex)|T-Rex NVIDIA GPU miner with web control monitoring page|False|2662|439|
 
 ## Latest Version
 
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
-| srbminer | 2.9.4 | 59864 | 2025-06-30T19:46:50Z |
-| xmrig | 6.24.0 | 951204 | 2025-06-23T00:44:53Z |
-| lolminer | 1.97 | 18808 | 2025-06-16T13:34:15Z |
+| srbminer | 2.9.4 | 59888 | 2025-06-30T19:46:50Z |
+| xmrig | 6.24.0 | 951876 | 2025-06-23T00:44:53Z |
+| lolminer | 1.97 | 18818 | 2025-06-16T13:34:15Z |
 | wildrigmulti | 0.43.2 | 2413 | 2025-06-06T05:12:21Z |
-| riggel | 1.22.2 | 17456 | 2025-06-01T17:15:31Z |
+| riggel | 1.22.2 | 17501 | 2025-06-01T17:15:31Z |
 | luminousminer | 0.10 | 24 | 2025-05-16T12:34:43Z |
-| nanominer | 3.10.0 | 206967 | 2025-03-12T23:56:12Z |
-| onezerominer | 1.4.5 | 4838 | 2025-02-25T22:42:44Z |
-| bzminer | 23.0.2 | 15201 | 2025-02-25T17:29:27Z |
+| nanominer | 3.10.0 | 206986 | 2025-03-12T23:56:12Z |
+| onezerominer | 1.4.5 | 4861 | 2025-02-25T22:42:44Z |
+| bzminer | 23.0.2 | 15202 | 2025-02-25T17:29:27Z |
 | quai-gpu-miner | 0.5.0 | 3851 | 2025-01-29T16:43:26Z |
 | teamblackminer | 2.28 | 935 | 2024-10-15T10:54:57Z |
 | ttminer | 2024.3.2 | 22614 | 2024-07-09T17:29:03Z |
-| teamredminer | 0.10.21 | 58562 | 2024-05-06T12:59:28Z |
+| teamredminer | 0.10.21 | 58565 | 2024-05-06T12:59:28Z |
 | meowpowminer | 2.0.0 | 2466 | 2024-02-23T22:09:09Z |
-| gminer | 3.44 | 1101258 | 2023-07-20T12:46:41Z |
+| gminer | 3.44 | 1101294 | 2023-07-20T12:46:41Z |
 | miniz | 2.5e | 1623 | 2023-02-13T19:29:17Z |
 | evrprogpowminer | 1.3.0-a66d921b | 6069 | 2022-10-20T19:47:53Z |
-| T-Rex | 0.26.8 | 937331 | 2022-09-30T05:56:56Z |
-| nbminer | 42.3 | 2362566 | 2022-09-02T08:36:31Z |
+| T-Rex | 0.26.8 | 937335 | 2022-09-30T05:56:56Z |
+| nbminer | 42.3 | 2362568 | 2022-09-02T08:36:31Z |
 | Autolykos2_AMD_Miner | 2.1 | 701 | 2021-11-08T22:34:27Z |
 | Autolykos2_NV_Miner | 4.2.0 | 3471 | 2021-11-07T11:54:42Z |
 | firominer | 1.1.0 | 6886 | 2021-09-13T12:47:29Z |
@@ -63,16 +63,16 @@ Updated: 2025-07-25
 ## Old version
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
-| xmrig | v6.23.0 | 238620 | 2025-06-16T14:00:42Z |
-| xmrig | v6.22.3 | 259858 | 2025-06-04T11:11:51Z |
-| xmrig | v6.22.2 | 4895414 | 2024-11-03T07:38:44Z |
-| xmrig | v6.22.1 | 37181 | 2024-10-23T05:53:06Z |
-| xmrig | v6.22.0 | 783699 | 2024-08-11T18:13:51Z |
-| xmrig | v6.21.3 | 1132708 | 2024-04-23T09:27:24Z |
-| xmrig | v6.21.2 | 541480 | 2024-03-23T06:38:42Z |
+| xmrig | v6.23.0 | 238631 | 2025-06-16T14:00:42Z |
+| xmrig | v6.22.3 | 259859 | 2025-06-04T11:11:51Z |
+| xmrig | v6.22.2 | 4895640 | 2024-11-03T07:38:44Z |
+| xmrig | v6.22.1 | 37183 | 2024-10-23T05:53:06Z |
+| xmrig | v6.22.0 | 783701 | 2024-08-11T18:13:51Z |
+| xmrig | v6.21.3 | 1132721 | 2024-04-23T09:27:24Z |
+| xmrig | v6.21.2 | 541490 | 2024-03-23T06:38:42Z |
 | xmrig | v6.21.1 | 498325 | 2024-02-25T15:26:52Z |
-| xmrig | v6.21.0 | 4624786 | 2023-11-23T13:40:58Z |
-| xmrig | v6.20.0 | 2137275 | 2023-07-03T05:42:00Z |
+| xmrig | v6.21.0 | 4625152 | 2023-11-23T13:40:58Z |
+| xmrig | v6.20.0 | 2137282 | 2023-07-03T05:42:00Z |
 
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
@@ -154,7 +154,7 @@ Updated: 2025-07-25
 
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
-| gminer | 3.43 | 588467 | 2023-07-20T12:46:41Z |
+| gminer | 3.43 | 588469 | 2023-07-20T12:46:41Z |
 | gminer | 3.42 | 164084 | 2023-07-20T12:46:41Z |
 | gminer | 3.41 | 191613 | 2022-10-12T15:09:20Z |
 | gminer | 3.40 | 79664 | 2022-10-12T15:09:20Z |
@@ -169,13 +169,13 @@ Updated: 2025-07-25
 |:-----:|:-------:|:--------:|:------------:|
 | lolminer | 1.95 | 15254 | 2025-02-01T20:03:57Z |
 | lolminer | 1.96a | 10830 | 2025-02-01T20:03:57Z |
-| lolminer | 1.95a | 121426 | 2025-02-01T20:03:57Z |
+| lolminer | 1.95a | 121443 | 2025-02-01T20:03:57Z |
 | lolminer | 1.96beta | 228 | 2025-02-01T20:03:57Z |
-| lolminer | 1.94a | 88296 | 2025-01-25T07:34:10Z |
+| lolminer | 1.94a | 88298 | 2025-01-25T07:34:10Z |
 | lolminer | 1.94 | 3760 | 2025-01-02T20:41:20Z |
-| lolminer | 1.93 | 25752 | 2024-11-20T19:40:52Z |
+| lolminer | 1.93 | 25754 | 2024-11-20T19:40:52Z |
 | lolminer | 1.92 | 264586 | 2024-09-28T14:42:03Z |
-| lolminer | 1.91 | 75113 | 2024-09-16T10:26:15Z |
+| lolminer | 1.91 | 75135 | 2024-09-16T10:26:15Z |
 | lolminer | 1.90 | 6695 | 2024-09-16T08:07:24Z |
 
 | Miner | Version | Download | Release Date |
@@ -213,7 +213,7 @@ Updated: 2025-07-25
 | srbminer | 2.8.8 | 109585 | 2025-05-12T22:48:53Z |
 | srbminer | 2.8.7 | 44332 | 2025-05-07T13:32:09Z |
 | srbminer | 2.8.6 | 21883 | 2025-04-23T08:42:48Z |
-| srbminer | 2.8.5 | 34027 | 2025-04-23T08:42:48Z |
+| srbminer | 2.8.5 | 34029 | 2025-04-23T08:42:48Z |
 | srbminer | 2.8.4 | 28522 | 2025-04-18T05:27:37Z |
 | srbminer | 2.8.3 | 22865 | 2025-04-12T14:55:17Z |
 
@@ -238,7 +238,7 @@ Updated: 2025-07-25
 | bzminer | v21.5.0 | 217 | 2024-10-11T02:14:42Z |
 | bzminer | v21.4.0 | 6229 | 2024-07-09T14:01:09Z |
 | bzminer | v21.3.0 | 1791 | 2024-06-27T23:21:32Z |
-| bzminer | v21.2.0 | 1561046 | 2024-05-31T21:35:51Z |
+| bzminer | v21.2.0 | 1561049 | 2024-05-31T21:35:51Z |
 | bzminer | v21.1.5 | 3555 | 2024-05-06T17:37:28Z |
 | bzminer | v21.1.4b8 | 647 | 2024-04-15T14:15:31Z |
 | bzminer | v21.1.3b3 | 1761 | 2024-04-15T14:15:31Z |
@@ -258,7 +258,7 @@ Updated: 2025-07-25
 
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
-| nanominer | v3.9.3 | 1259517 | 2024-04-04T21:11:51Z |
+| nanominer | v3.9.3 | 1259555 | 2024-04-04T21:11:51Z |
 | nanominer | v3.9.2 | 94351 | 2024-04-04T21:11:51Z |
 | nanominer | v3.9.1 | 77228 | 2024-04-04T21:11:51Z |
 | nanominer | v3.9.0 | 7085 | 2024-01-11T18:02:16Z |
@@ -299,7 +299,7 @@ Updated: 2025-07-25
 |:-----:|:-------:|:--------:|:------------:|
 | ttminer | 2024.3.1 | 326 | 2024-07-08T19:05:16Z |
 | ttminer | 2024.3.0 | 1069 | 2024-04-21T17:16:05Z |
-| ttminer | 2024.2.0 | 5714 | 2024-03-26T21:11:06Z |
+| ttminer | 2024.2.0 | 5728 | 2024-03-26T21:11:06Z |
 | ttminer | 2024.1.8 | 1191 | 2024-03-21T19:00:18Z |
 | ttminer | 2024.1.7 | 701 | 2024-03-18T20:41:19Z |
 | ttminer | 2024.1.6 | 267 | 2024-03-17T23:02:46Z |
@@ -319,7 +319,7 @@ Updated: 2025-07-25
 | wildrigmulti | 0.42.5 | 634 | 2025-03-09T16:25:33Z |
 | wildrigmulti | 0.42.4 | 1287 | 2025-01-25T15:24:29Z |
 | wildrigmulti | 0.42.3 | 1431 | 2025-01-25T15:24:29Z |
-| wildrigmulti | 0.42.2 | 254928 | 2025-01-25T15:24:29Z |
+| wildrigmulti | 0.42.2 | 254940 | 2025-01-25T15:24:29Z |
 
 | Miner | Version | Download | Release Date |
 |:-----:|:-------:|:--------:|:------------:|
