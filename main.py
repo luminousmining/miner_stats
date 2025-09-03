@@ -110,7 +110,7 @@ class MinerSoftware:
 
 
 def initialize_logger():
-    log_level = logging.DEBUG
+    log_level = logging.INFO
     logging.basicConfig(
         format='%(levelname)s[%(asctime)s]: %(message)s',
         datefmt='%m/%d/%Y %I:%M:%S %p',
@@ -128,6 +128,9 @@ def build_header(current_date: datetime.date) -> str:
 
 
 def build_miner_list(miners: List[MinerSoftware]) -> str:
+    if not miners:
+        return ''
+
     output = '## Miners\n'
     output += '\n'
     output += '| Miner | description | OpenSource |stars | forks |\n'
@@ -150,6 +153,9 @@ def build_latest(miners: List[MinerSoftware]) -> str:
 
     miner_info.sort(key=lambda x: x[3], reverse=True)
 
+    if not miner_info:
+        return ''
+
     output = '## Latest Version\n\n'
     output += '| Miner | Version | Download | Release Date |\n'
     output += '|:-----:|:-------:|:--------:|:------------:|\n'
@@ -160,16 +166,20 @@ def build_latest(miners: List[MinerSoftware]) -> str:
 
 
 def build_old_version(miners: List[MinerSoftware], last_count: int) -> str:
+    if not miners:
+        return ''
+
     output = '\n'
     output += f'## Old version'
     output += '\n'
     for miner in miners:
-        output += '| Miner | Version | Download | Release Date |\n'
-        output += '|:-----:|:-------:|:--------:|:------------:|\n'
         versions = miner.get_old_version(last_count)
-        for version in versions:
-            output += f'| {miner.name} | {version[0]} | {version[1]} | {version[2]} |\n'
-        output += '\n'
+        if versions:
+            output += '| Miner | Version | Download | Release Date |\n'
+            output += '|:-----:|:-------:|:--------:|:------------:|\n'
+            for version in versions:
+                output += f'| {miner.name} | {version[0]} | {version[1]} | {version[2]} |\n'
+            output += '\n'
 
     return output
 
@@ -222,4 +232,3 @@ def run():
 
 if __name__ == '__main__':
     run()
-
