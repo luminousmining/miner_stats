@@ -73,7 +73,7 @@ class MinerSoftware:
         tag_name = release['tag_name'].replace('v', '')
         created_at = release['created_at']
 
-        logging.info(f''🔄 [latest]{self.name} v{tag_name}: {download_count}')
+        logging.info(f'🔄 [latest]{self.name} v{tag_name}: {download_count}')
         self.download_count_last = download_count
 
         return tag_name, download_count, created_at
@@ -93,7 +93,7 @@ class MinerSoftware:
             for asset in assets:
                 count += asset['download_count']
             versions.append((tag_name, count, created_at))
-            logging.info(f''🔄 [old]{self.name} v{tag_name}: {count}')
+            logging.info(f'🔄 [old]{self.name} v{tag_name}: {count}')
 
         return versions
 
@@ -137,7 +137,7 @@ def build_miner_list(miners: List[MinerSoftware]) -> str:
     output += '|:-----:|:-----------:|:----------:|:----:|:-----:|\n'
 
     for miner in miners:
-        icon_opensource = ✅ if miner.opensource else ❌
+        icon_opensource = '✅' if miner.opensource else '❌'
         output += f'|[{miner.name}]({miner.base_repo})|{miner.description}|{icon_opensource}|{miner.stars}|{miner.forks}|\n'
 
     output += '\n'
@@ -204,6 +204,7 @@ def run():
         MinerSoftware('Autolykos2_NV_Miner', 'mhssamadani/Autolykos2_NV_Miner', True),
         MinerSoftware('Autolykos2_AMD_Miner', 'mhssamadani/Autolykos2_AMD_Miner', True),
         MinerSoftware('xMiner', 'CyberChainXyz/xMiner', True),
+        MinerSoftware('vecno-miner', 'Vecno-Foundation/vecno-miner', True),
 
         # Miner Close Source
         MinerSoftware('gminer', 'develsoftware/GMinerRelease', False),
@@ -220,6 +221,7 @@ def run():
         MinerSoftware('ttminer', 'TrailingStop/TT-Miner-release', False),
         MinerSoftware('wildrigmulti', 'andru-kun/wildrig-multi', False),
         MinerSoftware('T-Rex', 'trexminer/T-Rex', False),
+        MinerSoftware('NOCKminer', 'nostalgia-mining/NOCKminer', False)
     ]
 
     current_date = datetime.date.today()
