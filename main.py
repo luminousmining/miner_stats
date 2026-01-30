@@ -210,7 +210,7 @@ def run():
         MinerSoftware('gminer', 'develsoftware/GMinerRelease', False),
         MinerSoftware('lolminer', 'Lolliedieb/lolMiner-releases', False),
         MinerSoftware('teamredminer', 'todxx/teamredminer', False),
-        MinerSoftware('riggel', 'rigelminer/rigel', False),
+        MinerSoftware('rigel', 'rigelminer/rigel', False),
         MinerSoftware('srbminer', 'doktor83/SRBMiner-Multi', False),
         MinerSoftware('teamblackminer', 'sp-hash/TeamBlackMiner', False),
         MinerSoftware('bzminer', 'bzminer/bzminer', False),
