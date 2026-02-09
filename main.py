@@ -205,6 +205,9 @@ def run():
         MinerSoftware('Autolykos2_AMD_Miner', 'mhssamadani/Autolykos2_AMD_Miner', True),
         MinerSoftware('xMiner', 'CyberChainXyz/xMiner', True),
         MinerSoftware('vecno-miner', 'Vecno-Foundation/vecno-miner', True),
+        MinerSoftware('minergate', 'roberto-ew2/MinerGate', True),
+        MinerSoftware('ccminer', 'cbuchner1/ccminer', True),
+        MinerSoftware('cuckatoo-miner', 'NicolasFlamel1/Cuckatoo-Reference-Miner', True),
 
         # Miner Close Source
         MinerSoftware('gminer', 'develsoftware/GMinerRelease', False),
